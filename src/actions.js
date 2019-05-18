@@ -207,7 +207,7 @@ export const selectOp = (op) => ({
     type: SELECT_OP,
     op
 });
-export const handleSort = (clickedColumn, isAscending) => ({
+export const handleSort = (clickedColumn) => ({
     type: HANDLE_SORT,
     clickedColumn
 });
