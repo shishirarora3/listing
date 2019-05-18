@@ -1,0 +1,26 @@
+// @flow
+/*
+  DOCUMENTATION: https://orbit.kiwi/components/carrierlogo/
+*/
+import type { ReactComponentStyled } from "styled-components";
+
+import type { Globals } from "../common/common.js.flow";
+
+export type Carrier = { code: string, name: string, type?: "airline" | "bus" | "train" };
+
+type Size = "small" | "medium" | "large";
+
+export type Props = {|
+  +size?: Size,
+  +carriers: Carrier[],
+  ...Globals,
+|};
+
+type styledCarrierLogo = {
+  size: Size,
+  carriers: Carrier,
+};
+
+declare export var StyledCarrierLogo: ReactComponentStyled<styledCarrierLogo>;
+
+declare export default React$ComponentType<Props>;

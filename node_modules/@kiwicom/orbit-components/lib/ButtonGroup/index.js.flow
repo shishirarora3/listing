@@ -1,0 +1,13 @@
+// @flow
+/*
+  DOCUMENTATION: https://orbit.kiwi/components/buttongroup/
+*/
+import type { Globals } from "../common/common.js.flow";
+
+export type Props = {|
+  +children: React$Node,
+  +connected?: boolean,
+  ...Globals,
+|};
+
+declare export default React$ComponentType<Props>;

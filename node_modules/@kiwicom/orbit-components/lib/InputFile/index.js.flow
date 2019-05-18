@@ -1,0 +1,27 @@
+// @flow
+/*
+  DOCUMENTATION: https://orbit.kiwi/components/inputfile/
+*/
+import type { Globals, Translation, Ref } from "../common/common.js.flow";
+import type { spaceAfter } from "../common/getSpacingToken/index";
+
+export type Props = {|
+  ...Globals,
+  ...spaceAfter,
+  +label?: Translation,
+  +title?: React$Node,
+  +name?: string,
+  +placeholder?: Translation,
+  +fileName?: string,
+  +allowedFileTypes?: string | string[],
+  +help?: React$Node,
+  +error?: React$Node,
+  tabIndex?: string,
+  +onChange?: (ev: SyntheticInputEvent<HTMLInputElement>) => void | Promise<any>,
+  +onFocus?: (ev: SyntheticInputEvent<HTMLInputElement>) => void | Promise<any>,
+  +onBlur?: (ev: SyntheticInputEvent<HTMLInputElement>) => void | Promise<any>,
+  +onRemoveFile?: () => void | Promise<any>,
+  ref?: Ref,
+|};
+
+declare export default React$ComponentType<Props>;

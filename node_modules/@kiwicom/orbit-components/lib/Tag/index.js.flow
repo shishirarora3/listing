@@ -1,0 +1,23 @@
+// @flow
+/*
+  DOCUMENTATION: https://orbit.kiwi/components/tag/
+*/
+import { ReactComponentStyled } from "styled-components";
+
+import type { Globals } from "../common/common.js.flow";
+
+type Size = "small" | "normal";
+
+export type Props = {|
+  +children: React$Node,
+  +icon?: React$Node,
+  +selected?: boolean,
+  +size?: Size,
+  +onRemove?: () => void | Promise<any>,
+  +onClick?: () => void | Promise<any>,
+  ...Globals,
+|};
+
+declare export default React$ComponentType<Props>;
+
+declare export var StyledTag: ReactComponentStyled<any>;

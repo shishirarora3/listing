@@ -1,0 +1,16 @@
+// @flow
+/*
+  DOCUMENTATION: https://orbit.kiwi/components/ratingstars/
+*/
+import type { Globals } from "../common/common.js.flow";
+import type { Size } from "../Icon";
+
+export type Props = {
+  +rating: number,
+  +size?: Size,
+  +color?: "attention" | "primary" | "secondary",
+  +showEmpty?: boolean,
+  ...Globals,
+};
+
+declare export default React$ComponentType<Props>;
