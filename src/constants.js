@@ -12,3 +12,4 @@ export const SELECT_OP = "SELECT_OP";
 export const HANDLE_SORT = "HANDLE_SORT";
 export const HANDLE_PAGINATION = "HANDLE_PAGINATION";
 export const UPDATE_PAGE_SIZE = "UPDATE_PAGE_SIZE";
+export const PAGE_SIZE = 10;

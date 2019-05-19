@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import {fetchData, filterCallsByAgents, filterCallsByDuration} from "../actions";
 import {connect} from "react-redux";
-import {H5, RangeInput, SmallFont} from "../styled-components";
+import {H5, RangeInput, SmallFont, ContentWrapper} from "../styled-components";
 import Separator from "@kiwicom/orbit-components/lib/Separator";
 import Select from 'react-select';
 
@@ -22,6 +22,7 @@ const RenderFilterComponent = props => {
     }));
     return (
         <React.Fragment>
+            <ContentWrapper>
             <H5>Filter By Call Duration</H5>
             <RangeInput
                 onChange={e => filterCallsByDuration(Number(e.target.value))}
@@ -32,9 +33,10 @@ const RenderFilterComponent = props => {
             />
 
             <SmallFont>Call Duration Range: [0-{duration}]</SmallFont>
-
-            <H5>Filter By Agents</H5>
+            </ContentWrapper>
             <Separator/>
+            <ContentWrapper>
+            <H5>Filter By Agents</H5>
             <Select
                 defaultValue={[]}
                 name="callers"
@@ -49,6 +51,7 @@ const RenderFilterComponent = props => {
                     filterCallsByAgents(agents);
                 }}
             />
+            </ContentWrapper>
         </React.Fragment>
     );
 };

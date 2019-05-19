@@ -15,16 +15,23 @@ export const Row = styled.section`
   max-width: 1200px;
   text-align: left;
   justify-content: space-between;
-  margin: 10px;
+  align-items: flex-start;
 `;
 
 export const MainContentWrapper = styled(Row)`
   justify-content: space-around;
+  flex-grow: 8;
+  width: 75%;
 `;
+
 
 export const Col = styled.section`
   display: flex;
   flex-direction: column;
+`;
+export const BodyContentWrapper = styled(Row)`
+  justify-content: space-around;
+  width:100vw;
 `;
 
 export const Title = styled.h2`
@@ -42,6 +49,7 @@ export const SideBarView = styled.div`
   margin-bottom: 20px;
   padding: 20px;
   color: #000;
+  width: 25%;
 `;
 
 

@@ -55,7 +55,6 @@ export const filterCallsByDuration = duration => ({
     duration
 });
 
-// AJAX API > SHOUL BE STORED IN DEFF FOLDER BUT FOR NO IT"S OK HAVE IT HERE
 const fetchFilteredCalls = async (filter_agent_list, filter_time_range) => {
     const _filter_agent_list =
         filter_agent_list && filter_agent_list.length > 0

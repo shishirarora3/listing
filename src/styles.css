@@ -12,7 +12,11 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-.ui.table thead tr th:hover{
+.ui.table thead tr th:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+label{
+    z-index: 0!important;
 }

@@ -113,10 +113,7 @@ const dataReducer = (state = initialState, action = {}) => {
                 ...state,
                 isFetching: false,
                 dataFetched: true,
-
-                //
                 filteredCalls: _filteredCalls,
-                //
                 listOfAgents,
                 durationRange,
                 labelList,
