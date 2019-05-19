@@ -50,17 +50,12 @@ export const SideBarView = styled.div`
   padding: 20px;
   color: #000;
   width: 25%;
+  animation: loaded 0.3s;
 `;
 
 
 export const RangeInput = styled.input`
 cursor: pointer;
-`;
-
-export const Divider = styled.div`
-  display: block;
-  height: 1px;
-  background-color: #ccc;
 `;
 
 export const MainContentView = styled.section`
@@ -77,9 +72,6 @@ export const SmallFont = styled.small`
   display: block;
 `;
 
-export const Button = styled.button``;
-export const Select = styled.select`
-  height:30px;
-  width:100px;
+export const CallsContainer = styled.div`
+  animation: loaded 0.3s;
 `;
-export const Option = styled.option``;

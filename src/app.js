@@ -10,7 +10,7 @@ import {
     updatePageSize
 } from "./actions";
 import _ from "lodash";
-import {BodyContentWrapper, Col, MainContentView, MainContentWrapper, Row} from "./styled-components";
+import {BodyContentWrapper, Col, MainContentView, MainContentWrapper, Row, CallsContainer} from "./styled-components";
 import {Form, Header, Loader, Pagination} from 'semantic-ui-react';
 import {PAGE_SIZE} from "./constants";
 import {CustomTable} from "./components/CustomTable";
@@ -33,6 +33,7 @@ class App extends Component {
             activePage, updatePageSize, pageSize,
         } = this.props;
         return (<Col>
+                <CallsContainer>
                 <CustomTable {...this.props}/>
                 <Row>
                     <Pagination
@@ -52,6 +53,7 @@ class App extends Component {
                         value={pageSize}
                     />
                 </Row>
+                </CallsContainer>
             </Col>
         );
     };
