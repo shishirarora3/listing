@@ -7,6 +7,7 @@ import configureStore from "./configureStore";
 import App from "./app";
 
 import "./styles.css";
+import 'semantic-ui-css/semantic.min.css'
 
 const store = configureStore();
 
