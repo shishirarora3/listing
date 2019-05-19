@@ -76,7 +76,7 @@ class App extends Component {
                 MainContent = this.renderFilteredCalls(filteredCalls);
             }
         } else if (isFetching) {
-            MainContent = <Loader active inline='centered'/>;
+            MainContent = <Loader active />;
             headingText = "Loading...";
         } else {
             MainContent = <Row>ERROR!!</Row>;
