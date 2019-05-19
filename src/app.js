@@ -32,7 +32,7 @@ class App extends Component {
             handlePagination, totalItems,
             activePage, updatePageSize, pageSize,
         } = this.props;
-        return (<Col>
+        return (<React.Fragment>
                 <CallsContainer>
                 <CustomTable {...this.props}/>
                 <Row>
@@ -54,7 +54,7 @@ class App extends Component {
                     />
                 </Row>
                 </CallsContainer>
-            </Col>
+            </React.Fragment>
         );
     };
 

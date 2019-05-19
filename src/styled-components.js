@@ -22,6 +22,7 @@ export const MainContentWrapper = styled(Row)`
   justify-content: space-around;
   flex-grow: 8;
   width: 75%;
+  height: 500px;
 `;
 
 
@@ -74,4 +75,5 @@ export const SmallFont = styled.small`
 
 export const CallsContainer = styled.div`
   animation: loaded 0.3s;
+  width: 100%;
 `;
