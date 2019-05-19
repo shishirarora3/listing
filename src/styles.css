@@ -31,3 +31,6 @@ label {
         opacity: 1;
     }
 }
+table.ui.table{
+    margin: 0;
+}

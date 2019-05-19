@@ -20,7 +20,6 @@ export const Row = styled.section`
 
 export const MainContentWrapper = styled(Row)`
   justify-content: space-around;
-  flex-grow: 8;
   width: 75%;
   height: 500px;
 `;
@@ -51,6 +50,7 @@ export const SideBarView = styled.div`
   padding: 20px;
   color: #000;
   width: 25%;
+  height: 500px;
   animation: loaded 0.3s;
 `;
 
