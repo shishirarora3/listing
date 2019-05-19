@@ -62,10 +62,7 @@ class App extends Component {
         } = this.props;
         let MainContent;
         let headingText;
-        if (isFetching) {
-            MainContent = <Loader active inline='centered'/>;
-            headingText = "Loading...";
-        } else if (error) {
+        if (error) {
             MainContent = <Row>ERROR!!</Row>;
         } else if (dataFetched && filteredCalls) {
             if (filteredCalls.length === 0) {
@@ -76,6 +73,9 @@ class App extends Component {
                 headingText = "Filtered Call List";
                 MainContent = this.renderFilteredCalls(filteredCalls);
             }
+        } else if (isFetching) {
+            MainContent = <Loader active inline='centered'/>;
+            headingText = "Loading...";
         } else {
             MainContent = <Row>ERROR!!</Row>;
         }

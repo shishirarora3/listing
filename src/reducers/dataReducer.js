@@ -33,7 +33,9 @@ const initialState = {
     opForUpdateLabelUpdate: "add",
     activePage: 1,
     totalItems: 0,
-    pageSize: 10
+    pageSize: 10,
+    clickedColumn: "call_id",
+    isAscending: true
 };
 
 const paginate = (arr, activePage, pageSize) => {
@@ -41,11 +43,6 @@ const paginate = (arr, activePage, pageSize) => {
 };
 
 const mapCallsWithLabels = (filteredCalls = [], callList = [], activePage, pageSize) => {
-    /*
-    filtered_calls = agent_id,call_id, call_time
-    call_list = call_id, label_id
-    => agent_id, call_time, label_id
-     */
     const callIdLabelIdMap = _.keyBy(callList, "call_id");
     const totalItems = filteredCalls.sort(({call_id: call_id_1}, {call_id: call_id_2}) => {
         return call_id_1 - call_id_2;
