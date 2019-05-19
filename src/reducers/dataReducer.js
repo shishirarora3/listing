@@ -140,7 +140,8 @@ const dataReducer = (state = initialState, action = {}) => {
             if (action.call_id === "ALL") {
                 return {
                     ...state,
-                    callListLabelForUpdate: action.isSelected ? state.filteredCalls.map(({call_id}) => call_id) : []
+                    callListLabelForUpdate: action.isSelected ? state.filteredCalls.map(({call_id}) => call_id) : [],
+                    allSelected: action.isSelected
                 }
             }
             if (action.isSelected) {

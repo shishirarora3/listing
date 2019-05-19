@@ -14,26 +14,24 @@ import {
 import CheckBox from "@kiwicom/orbit-components/lib/Checkbox";
 import Button from "@kiwicom/orbit-components/lib/Button";
 import InputField from "@kiwicom/orbit-components/lib/InputField";
-import Text from "@kiwicom/orbit-components/lib/Text";
 import Tag from "@kiwicom/orbit-components/lib/Tag";
 import Remove from "@kiwicom/orbit-components/lib/icons/Remove";
 import _ from "lodash";
 import {
     Col,
-    FooterView,
     H3,
-    ListView,
+    MainContentWrapper,
     MainContentView,
     Option,
     Row,
     Select,
     SideBarView,
-    StatisticDataPanel
+    ContentWrapper
 } from "./styled-components";
 import RenderFilterComponent from "./components/FilterSideBar";
 import CheckCircle from "@kiwicom/orbit-components/lib/icons/CheckCircle";
 import Badge from "@kiwicom/orbit-components/lib/Badge";
-import {Form, Pagination, Table} from 'semantic-ui-react';
+import {Form, Label, LabelDetail, Pagination, Table} from 'semantic-ui-react';
 
 const PAGE_SIZE = 10;
 
@@ -61,80 +59,82 @@ class App extends Component {
         const {
             callListLabelForUpdate,
             clickedColumn, handleSort, isAscending, handlePagination, totalItems,
-            activePage, updatePageSize, pageSize
+            activePage, updatePageSize, pageSize, allSelected
         } = this.props;
         const direction = isAscending ? "ascending" : "descending";
         if (filteredCalls.length === 0) {
             return (
                 <MainContentView>
-                    <StatisticDataPanel>{""}</StatisticDataPanel>
+                    <H3>No Filtered Call List with given criteria</H3>
                     <Row>
                         <SideBarView>
                             <RenderFilterComponent/>
                         </SideBarView>
-                        <ListView>
                             <H3>NO Result</H3>
-                        </ListView>
                     </Row>
                 </MainContentView>
             );
         } else {
             return (
                 <MainContentView>
-                    <StatisticDataPanel>Filtered Call List</StatisticDataPanel>
-                    <Row>
+                    <H3>Filtered Call List</H3>
+                    <MainContentWrapper>
                         <SideBarView>
-                            <Text>Labels</Text>
-                            <Select onChange={(e) => this.props.selectOp(e.target.value)}
-                                    value={this.props.opForUpdateLabelUpdate}
-                            >
-                                <Option value="add">Add/Update</Option>
-                                <Option value="remove">Remove</Option>
-                            </Select>
-                            <InputField
-                                label="Modify"
-                                tags={
-                                    this.state.inputLabels.map((_label, key) => (<Tag
-                                        key={key}
-                                        icon={<Remove/>}
-                                        size="normal"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                        }}
-                                        onRemove={() => {
-                                            this.setState({
-                                                inputLabels: [...this.state.inputLabels.filter(l => l !== _label)]
-                                            });
-                                        }}
-                                        dataTest="test"
+                            <Col>
+                                <Row>
+                                    <LabelDetail>Labels Operation</LabelDetail>
+                                    <Select onChange={(e) => this.props.selectOp(e.target.value)}
+                                            value={this.props.opForUpdateLabelUpdate}
                                     >
-                                        {_label}
-                                    </Tag>))
-                                }
-                                value={this.state.inputValue}
-                                placeholder="Labels"
-                                type="text"
-                                onChange={(e) => {
-                                    this.setState({
-                                        inputValue: e.target.value
-                                    })
-                                }}
-                                onBlur={(e) => {
-                                    const value = e.target.value;
-                                    if (e.target.value) {
-                                        this.setState({
-                                            inputLabels: [...this.state.inputLabels, value]
-                                        });
-                                    }
-                                    this.setState({
-                                        inputValue: ""
-                                    })
-                                }}
-                            >
-
-                            </InputField>
-                            <Button onClick={() => this.onSubmit()}>Apply Labels</Button>
-                            <RenderFilterComponent/>
+                                        <Option value="add">Add/Update</Option>
+                                        <Option value="remove">Remove</Option>
+                                    </Select>
+                                </Row>
+                                <Row>
+                                    <InputField
+                                        tags={
+                                            this.state.inputLabels.map((_label, key) => (<Tag
+                                                key={key}
+                                                icon={<Remove/>}
+                                                size="normal"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                }}
+                                                onRemove={() => {
+                                                    this.setState({
+                                                        inputLabels: [...this.state.inputLabels.filter(l => l !== _label)]
+                                                    });
+                                                }}
+                                                dataTest="test"
+                                            >
+                                                {_label}
+                                            </Tag>))
+                                        }
+                                        value={this.state.inputValue}
+                                        placeholder="Add Labels Here.."
+                                        type="text"
+                                        onChange={(e) => {
+                                            this.setState({
+                                                inputValue: e.target.value
+                                            })
+                                        }}
+                                        onBlur={(e) => {
+                                            const value = e.target.value;
+                                            if (e.target.value) {
+                                                this.setState({
+                                                    inputLabels: [...this.state.inputLabels, value]
+                                                });
+                                            }
+                                            this.setState({
+                                                inputValue: ""
+                                            })
+                                        }}
+                                    >
+                                    </InputField>
+                                    <Button onClick={() => this.onSubmit()}>Apply Labels</Button>
+                                </Row>
+                                <RenderFilterComponent/>
+                            </Col>
                         </SideBarView>
                         <Col>
                             <Table sortable celled fixed>
@@ -142,7 +142,10 @@ class App extends Component {
                                     <Table.Row>
                                         <Table.HeaderCell>
                                             <CheckBox
-                                                label="Select All"
+                                                checked={allSelected}
+                                                label={(
+                                                    <Label style={{textDecoration: 'none'}}>Select All</Label>
+                                                )}
                                                 onChange={(e) =>
                                                     this.props.updateNextCallLabelSelection("ALL",
                                                         e.target.checked)}/>
@@ -188,33 +191,34 @@ class App extends Component {
                                                         </Badge>
                                                     })}
                                                 </Table.Cell>
-
-
                                             </Table.Row>)
                                     })}
                                 </Table.Body>
                             </Table>
                             <Row>
-                                <Pagination
-                                    activePage={activePage}
-                                    siblingRange={1}
-                                    totalPages={Math.ceil(_.size(totalItems) / PAGE_SIZE)}
-                                    onPageChange={(e, paginationProps) => {
-                                        const activePage = paginationProps.activePage;
-                                        handlePagination(activePage);
-                                    }}
-                                />
-                                <Form.Input
-                                    label='Items per page'
-                                    name='callsPerPage'
-                                    onChange={(e, {value}) => updatePageSize(value)}
-                                    type='number'
-                                    value={pageSize}
-                                />
+                                <ContentWrapper>
+                                    <Pagination
+                                        activePage={activePage}
+                                        siblingRange={1}
+                                        totalPages={Math.ceil(_.size(totalItems) / PAGE_SIZE)}
+                                        onPageChange={(e, paginationProps) => {
+                                            const activePage = paginationProps.activePage;
+                                            handlePagination(activePage);
+                                        }}
+                                    />
+                                </ContentWrapper>
+                                <ContentWrapper>
+                                    <Form.Input
+                                        label='Items per page'
+                                        name='callsPerPage'
+                                        onChange={(e, {value}) => updatePageSize(value)}
+                                        type='number'
+                                        value={pageSize}
+                                    />
+                                </ContentWrapper>
                             </Row>
                         </Col>
-                        <FooterView/>
-                    </Row>
+                    </MainContentWrapper>
                 </MainContentView>
             );
         }
