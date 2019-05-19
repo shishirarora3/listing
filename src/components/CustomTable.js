@@ -10,7 +10,7 @@ export const CustomTable = ({
                                 callListLabelForUpdate, updateNextCallLabelSelection
                             }) => {
     const direction = isAscending ? "ascending" : "descending";
-    return  (
+    return (
         <Table>
             <Table.Header>
                 <Table.Row>
@@ -70,4 +70,4 @@ export const CustomTable = ({
             </Table.Body>
         </Table>
     );
-}
+};

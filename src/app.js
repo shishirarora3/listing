@@ -10,8 +10,7 @@ import {
     updatePageSize
 } from "./actions";
 import _ from "lodash";
-import {Col, MainContentView,
-    MainContentWrapper, Row, BodyContentWrapper} from "./styled-components";
+import {BodyContentWrapper, Col, MainContentView, MainContentWrapper, Row} from "./styled-components";
 import {Form, Header, Loader, Pagination} from 'semantic-ui-react';
 import {PAGE_SIZE} from "./constants";
 import {CustomTable} from "./components/CustomTable";
@@ -36,22 +35,22 @@ class App extends Component {
         return (<Col>
                 <CustomTable {...this.props}/>
                 <Row>
-                        <Pagination
-                            activePage={activePage}
-                            siblingRange={1}
-                            totalPages={Math.ceil(_.size(totalItems) / PAGE_SIZE)}
-                            onPageChange={(e, paginationProps) => {
-                                const activePage = paginationProps.activePage;
-                                handlePagination(activePage);
-                            }}
-                        />
-                        <Form.Input
-                            label='Items per page'
-                            name='callsPerPage'
-                            onChange={(e, {value}) => updatePageSize(value)}
-                            type='number'
-                            value={pageSize}
-                        />
+                    <Pagination
+                        activePage={activePage}
+                        siblingRange={1}
+                        totalPages={Math.ceil(_.size(totalItems) / PAGE_SIZE)}
+                        onPageChange={(e, paginationProps) => {
+                            const activePage = paginationProps.activePage;
+                            handlePagination(activePage);
+                        }}
+                    />
+                    <Form.Input
+                        label='Items per page'
+                        name='callsPerPage'
+                        onChange={(e, {value}) => updatePageSize(value)}
+                        type='number'
+                        value={pageSize}
+                    />
                 </Row>
             </Col>
         );
@@ -66,18 +65,18 @@ class App extends Component {
         if (isFetching) {
             MainContent = <Loader active inline='centered'/>;
             headingText = "Loading...";
-        }else if(error) {
+        } else if (error) {
             MainContent = <Row>ERROR!!</Row>;
-        }else if (dataFetched && filteredCalls) {
-            if(filteredCalls.length === 0){
+        } else if (dataFetched && filteredCalls) {
+            if (filteredCalls.length === 0) {
                 headingText = "No Filtered Call List with given criteria";
                 MainContent = <NoContent/>;
 
-            }else{
+            } else {
                 headingText = "Filtered Call List";
                 MainContent = this.renderFilteredCalls(filteredCalls);
             }
-        }else {
+        } else {
             MainContent = <Row>ERROR!!</Row>;
         }
         return (<MainContentView>
@@ -86,7 +85,7 @@ class App extends Component {
                 <BodyContentWrapper>
                     <SideBarContainer {...this.props}/>
                     <MainContentWrapper>
-                            {MainContent}
+                        {MainContent}
                     </MainContentWrapper>
                 </BodyContentWrapper>
             </Col>

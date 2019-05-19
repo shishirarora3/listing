@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import {fetchData, filterCallsByAgents, filterCallsByDuration} from "../actions";
 import {connect} from "react-redux";
-import {H5, RangeInput, SmallFont, ContentWrapper} from "../styled-components";
+import {ContentWrapper, H5, RangeInput, SmallFont} from "../styled-components";
 import Separator from "@kiwicom/orbit-components/lib/Separator";
 import Select from 'react-select';
 
@@ -23,34 +23,34 @@ const RenderFilterComponent = props => {
     return (
         <React.Fragment>
             <ContentWrapper>
-            <H5>Filter By Call Duration</H5>
-            <RangeInput
-                onChange={e => filterCallsByDuration(Number(e.target.value))}
-                type="range"
-                min={minimum}
-                max={maximum}
-                defaultValue={duration}
-            />
+                <H5>Filter By Call Duration</H5>
+                <RangeInput
+                    onChange={e => filterCallsByDuration(Number(e.target.value))}
+                    type="range"
+                    min={minimum}
+                    max={maximum}
+                    defaultValue={duration}
+                />
 
-            <SmallFont>Call Duration Range: [0-{duration}]</SmallFont>
+                <SmallFont>Call Duration Range: [0-{duration}]</SmallFont>
             </ContentWrapper>
             <Separator/>
             <ContentWrapper>
-            <H5>Filter By Agents</H5>
-            <Select
-                defaultValue={[]}
-                name="callers"
-                options={_agents}
-                className="basic-multi-select"
-                classNamePrefix="select"
-                placeholder="Select multiple callers"
-                isMulti
-                onChange={(...args) => {
-                    const _agents = args[0];
-                    const agents = _agents.map(({value}) => value);
-                    filterCallsByAgents(agents);
-                }}
-            />
+                <H5>Filter By Agents</H5>
+                <Select
+                    defaultValue={[]}
+                    name="callers"
+                    options={_agents}
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    placeholder="Select multiple callers"
+                    isMulti
+                    onChange={(...args) => {
+                        const _agents = args[0];
+                        const agents = _agents.map(({value}) => value);
+                        filterCallsByAgents(agents);
+                    }}
+                />
             </ContentWrapper>
         </React.Fragment>
     );
