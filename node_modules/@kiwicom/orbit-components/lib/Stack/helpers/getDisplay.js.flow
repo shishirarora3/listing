@@ -1,4 +1,0 @@
-// @flow
-export type GetDisplay = (inline: boolean) => string | boolean;
-
-declare export default GetDisplay;
